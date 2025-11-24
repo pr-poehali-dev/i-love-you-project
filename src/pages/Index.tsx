@@ -35,6 +35,19 @@ export default function Index() {
     return positions;
   };
 
+  const generateHearts = () => {
+    const hearts = [];
+    for (let i = 0; i < 20; i++) {
+      hearts.push({
+        left: `${Math.random() * 100}%`,
+        delay: `${Math.random() * 5}s`,
+        duration: `${5 + Math.random() * 5}s`,
+        size: `${1 + Math.random() * 1.5}rem`,
+      });
+    }
+    return hearts;
+  };
+
   return (
     <div className="min-h-screen w-full flex items-center justify-center bg-background text-foreground overflow-hidden">
       {step === 1 && (
@@ -115,6 +128,20 @@ export default function Index() {
               }}
             >
               я тебя люблю котенок
+            </div>
+          ))}
+          {generateHearts().map((heart, i) => (
+            <div
+              key={`heart-${i}`}
+              className="absolute text-red-500 animate-fall opacity-70"
+              style={{
+                left: heart.left,
+                fontSize: heart.size,
+                animationDelay: heart.delay,
+                animationDuration: heart.duration,
+              }}
+            >
+              ❤️
             </div>
           ))}
         </div>
